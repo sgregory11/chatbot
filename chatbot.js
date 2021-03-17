@@ -18,7 +18,7 @@ const client = new tmi.client(opts);
 // Register our event handlers (defined below)
 client.on('message', onMessageHandler);
 client.on('connected', onConnectedHandler);
-client.on('join', onJoinHandler);
+// client.on('join', onJoinHandler);
 
 // Connect to Twitch:
 client.connect();
