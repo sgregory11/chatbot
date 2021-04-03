@@ -34,15 +34,14 @@ const channelName = "#crazysunnie"
 function onMessageHandler(channel, tags, msg, self) {
     if (self) { return; } // Ignore messages from the bot
 
-    const commandName = msg.trim();
+    const message = msg.toLowerCase().trim();
 
-    const heyGuys = msg.includes('hey');
-
-    switch (commandName) {
+    switch (message) {
         case '!commands':
             clientSays(channel, listOfCommands())
             break;
         case '!insta':
+        case '!ig':
         case '!instagram':
             clientSays(channel, 'instagram.com/crazysunnie')
             break;
@@ -62,12 +61,21 @@ function onMessageHandler(channel, tags, msg, self) {
         case '!favlink':
             clientSays(channel, 'https://twitter.com/timthetatman/status/1349421209683898371?s=20')
             break;
+        case '!timeout':
+        case '!to':
+            break;
         default:
-            if (commandName.startsWith('!')) {
+            //see if can put in a switch case
+            if (message.startsWith('!')) {
                 clientSays(channel, 'whaaat is thaaat NotLikeThis')
-            } else if (heyGuys) {
+            }
+            if (message.match(' hey ') || message.match(/\bhe*y/)) {
                 clientSays(channel, 'HeyGuys HeyGuys HeyGuys ' + `@${tags.username}`)
-            } 
+            }
+            // caps message not working
+            if (message.match(/\W[A-Z]/)) {
+                clientSays(channel, `@${tags.username}` + 'Y U YELLIN FAM cmonBruh')
+            }
     }
 
 }
@@ -113,7 +121,7 @@ function onConnectedHandler(addr, port) {
 
 // timer
 function doSomethingRandom() {
-    const latestTikTok = "https://bit.ly/3ab52nv"
+    const latestTikTok = "https://bit.ly/3sgj3YJ"
     const randomNumber = roll();
     const mod = randomNumber % 2;
 
@@ -124,4 +132,4 @@ function doSomethingRandom() {
     }
 }
 
-setInterval(doSomethingRandom, 900000)
+setInterval(doSomethingRandom, 800000)
