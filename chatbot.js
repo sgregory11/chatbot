@@ -124,9 +124,9 @@ function onMessageHandler(channel, tags, msg, self) {
                 clientSays(channel, 'HeyGuys HeyGuys HeyGuys ' + `@${tags.username}`)
             }
 
-            if (message.match(/[A-Z]+/)) {
-                clientSays(channel, `@${tags.username}` + ' cmonBruh Y U YELLIN FAM cmonBruh')
-            }
+            // if (message.match(/[A-Z]+/)) {
+            //     clientSays(channel, `@${tags.username}` + ' cmonBruh Y U YELLIN FAM cmonBruh')
+            // }
 
             //!so
             if (message.match('!so')) {
