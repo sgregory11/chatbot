@@ -45,11 +45,11 @@ function onMessageHandler(channel, tags, msg, self) {
     if (self) { return; } // Ignore messages from the bot
     // console.log('userstate: '+userstate);
 
-    // for (var i in tags) {
-    //     value = tags[i];
-    //     console.log('i: ' + i);
-    //     console.log('tags: ' + value);
-    // }
+    for (var i in tags) {
+        value = tags[i];
+        console.log('i: ' + i);
+        console.log('tags: ' + value);
+    }
 
     const message = msg.trim();
 
@@ -149,28 +149,37 @@ function onMessageHandler(channel, tags, msg, self) {
 }
 
 
-function onReSubHandler(channel, tags, streakMonths, self) {
-    clientSays(channel, `@${tags.username}` + ' has been chillin with us for ' + streakMonths + 'months in a roooooow');
+function onReSubHandler(channel, username, streakMonths, message) {
+    console.log('username: '+username);
+    console.log('message: '+message);
+    clientSays(channel, username + ' has been chillin with us for ' + streakMonths + ' months in a roooooow');
+    if(message) {
+        clientSays(channel,'They said: ' + message);
+    }
 }
 
-function onSubMysteryHandler(channel, tags, giftSubCount, self) {
-    clientSays(channel, 'yoooooooo' + `@${tags.username}` + ' is gifting ' + giftSubCount + 'subs to the channel HotPokket HotPokket');
+function onSubMysteryHandler(channel, username, giftSubCount) {
+    console.log('username: '+username);
+    let senderCount = ~~userstate["msg-param-sender-count"];
+    clientSays(channel, 'yoooooooo ' + username + ' is gifting ' + giftSubCount + 'subs to the channel HotPokket HotPokket');
+    clientSays(channel, username + ' has gifted a total of: ' + senderCount + 'subs');
 }
 
-function onGiftSubHandler(channel, tags, self,) {
-    clientSays(channel, 'thaaaanks' + `@${tags.username}` + ' for giving ' + `@${tags['msg-param-recipient-display-name']}` + ' a suuub');
+function onGiftSubHandler(channel, username) {
+    console.log('username: '+username);
+    clientSays(channel, 'thaaaanks' + username + ' for giving ' + `@${tags['msg-param-recipient-display-name']}` + ' a suuub');
 }
 
-function onSubHandler(channel, tags, self) {
-    clientSays(channel, 'thaaaanks' + `@${tags.username}` + ' for the looooove Poooound Poooound');
+function onSubHandler(channel, username) {
+    clientSays(channel, 'thaaaanks' + username + ' for the looooove Poooound Poooound');
 }
 
 // batch process, need to figure out how to stop repeating
-function onJoinHandler(channel, tags, self) {
+function onJoinHandler(channel, username, self) {
     if (self) { return; } // Ignore messages from the bot
-    console.log("username:" + tags.username)
-    if (!isEmpty(tags.username)) {
-        clientSays(channel, 'HeyGuys ' + `@${tags.username}`)
+    console.log("username:" + username)
+    if (!isEmpty(username)) {
+        clientSays(channel, 'HeyGuys ' + username)
     }
 }
 
