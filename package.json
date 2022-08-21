@@ -6,6 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "pkg": {
+    "assest": [
+      "chatbot/**/*"
+    ],
+    "output": "dist"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sgregory11/chatbot.git"
@@ -21,6 +27,7 @@
   "homepage": "https://github.com/sgregory11/chatbot#readme",
   "dependencies": {
     "git": "^0.1.5",
+    "pkg": "^5.8.0",
     "tmi.js": "^1.7.1"
   }
 }
