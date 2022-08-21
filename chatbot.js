@@ -23,7 +23,7 @@ client.on('message', onMessageHandler);
 client.on('connected', onConnectedHandler);
 client.on('join', onJoinHandler);
 client.on('subscription', onSubHandler); //message for subs
-client.on('subgift', onGiftSubHandler); //message for gifted subs
+// client.on('subgift', onGiftSubHandler); //message for gifted subs
 client.on('resub', onReSubHandler); //message for resubbing
 client.on('submysterygift', onSubMysteryHandler); //message for gifting random subs
 
@@ -114,6 +114,9 @@ function onMessageHandler(channel, tags, msg, self) {
         case '!petty':
             clientSays(channel, 'Follow my gurl KomodoHype KomodoHype --> https://twitter.com/__pettyproud https://www.instagram.com/keicreates/ https://www.twitch.tv/pettyproud')
             break;
+        case '!riddle':
+            riddleMeThis(channel)
+            break;
         default:
             console.log(tags.mod + "<--tags.mod2")
             //see if can put in a switch case
@@ -190,6 +193,16 @@ function roll() {
 
 function clientSays(channel, textToRead) {
     client.say(channel, textToRead);
+}
+
+function riddleMeThis(channel) {
+    
+    clientSays(channel, "What does the fox say?");
+    setInterval(giveRiddleResponse, 10000)
+}
+
+function giveRiddleResponse() {
+    clientSays(channelName, "idk dude")
 }
 
 function listOfCommands() {
